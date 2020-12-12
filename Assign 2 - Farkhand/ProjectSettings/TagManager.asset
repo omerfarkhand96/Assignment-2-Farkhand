@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Door
+  - PatrolPoint
+  - FleePoint
+  - Metal
+  - Target
+  - ExplosiveBarrel
+  - Ethan
+  - Box
+  - Rifle
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -13,9 +23,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - Door
   - 
   - 
   - 
