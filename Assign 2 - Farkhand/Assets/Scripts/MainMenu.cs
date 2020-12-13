@@ -28,9 +28,16 @@ public class MainMenu : MonoBehaviour
         
     }
 
+    public void Menu()
+    {
+        Debug.Log("Back to Main Menu");
+        gunShot.Play();
+        SceneManager.LoadScene("MainMenu");
+    }
     public void Quit()
     {
         Debug.Log("Quit Button Hit");
+        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 
 public class Player : MonoBehaviour
 {
+    public Animator animator;
     public float currentHealth = 100f;
     public float maxHealth = 100f;
     public HealthBar healthBar;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
     private bool handgunPicked = true;
     private bool riflePicked = false;
     private bool boxPicked = false;
+    public bool keyPicked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour
         handgun.SetActive(false);
         rifle.SetActive(false);
         box.SetActive(false);
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -81,7 +85,16 @@ public class Player : MonoBehaviour
         {
             boxPicked = true;
             Debug.Log(boxPicked);
+        } else if (other.tag == "Key")
+        {
+            keyPicked = true;
         }
+
+        if(other.tag == "Goal")
+        {
+            SceneManager.LoadScene("End");
+        }
+
     }
 
     private void EquipRifle()
@@ -92,6 +105,7 @@ public class Player : MonoBehaviour
             handgun.SetActive(false);
             player.SetActive(true);
             box.SetActive(false);
+            animator.SetBool("RifleEquip", true);
         }
     }
 
@@ -104,7 +118,9 @@ public class Player : MonoBehaviour
             handgun.SetActive(true);
             player.SetActive(true);
             box.SetActive(false);
+            animator.SetBool("HandGunEquip", true);
         }
+        
     }
 
     private void EquipBox()
@@ -127,6 +143,9 @@ public class Player : MonoBehaviour
             player.SetActive(true);
             handgun.SetActive(false);
             rifle.SetActive(false);
+            animator.SetBool("HandGunEquip", false);
+            animator.SetBool("RifleEquip", false);
         }
     }
+
 }
